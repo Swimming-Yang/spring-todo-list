@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>새 할 일 추가</title>
+</head>
+<body>
+<h1>📝 새 할 일 추가</h1>
+
+<!-- 폼 제출 시 POST 방식으로 /todos 경로로 전송 -->
+<form th:action="@{/todos}" th:object="${todo}" method="post">
+  <p>
+    <label>내용: </label>
+    <input type="text" th:field="*{content}" />
+  </p>
+  <p>
+    <label>완료 여부: </label>
+    <input type="checkbox" th:field="*{done}" />
+  </p>
+  <p>
+    <button type="submit">추가하기</button>
+  </p>
+</form>
+
+<!-- 메인 페이지로 돌아가기 -->
+<p>
+  <a href="/">← 목록으로 돌아가기</a>
+</p>
+</body>
+</html>

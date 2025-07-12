@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>할 일 수정</title>
+</head>
+<body>
+<h1>🛠 할 일 수정</h1>
+
+<form th:action="@{/todos/update}" th:object="${todo}" method="post">
+    <!-- 숨겨진 ID 필드 -->
+    <input type="hidden" th:field="*{id}" />
+
+    <p>
+        <label>내용: </label>
+        <input type="text" th:field="*{content}" />
+    </p>
+    <p>
+        <label>완료 여부: </label>
+        <input type="checkbox" th:field="*{done}" />
+    </p>
+    <p>
+        <button type="submit">수정 완료</button>
+    </p>
+</form>
+
+<p><a href="/">← 목록으로 돌아가기</a></p>
+</body>
+</html>

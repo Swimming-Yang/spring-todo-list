@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Hello</title>
+  <meta charset="UTF-8">
+  <title>ToDo List</title>
 </head>
 <body>
-    <h1 th:text = "${message}">Spring 기본 페이지</h1>
+<h1>📋 나의 할 일 목록</h1>
+
+<!-- 새 할 일 추가 버튼 -->
+<p>
+  <a href="/todos/new">+ 새 할 일 추가하기</a>
+</p>
+
+<!-- 할 일 목록 출력 -->
+<ul>
+  <!-- 할 일이 없을 때 -->
+  <li th:if="${todoList.size() == 0}">
+    등록된 할 일이 없습니다.
+  </li>
+
+  <!-- 할 일이 있을 때 -->
+  <li th:each="todo : ${todoList}">
+    <span th:text="${todo.content}"></span>
+    <span th:if="${todo.done}">✅</span>
+    <span th:if="${!todo.done}">❌</span>
+
+    <a th:href="@{'/todos/delete/' + ${todo.id}}">[삭제]</a>
+    <a th:href="@{'/todos/edit/' + ${todo.id}}">[수정]</a>
+  </li>
+</ul>
 </body>
 </html>
